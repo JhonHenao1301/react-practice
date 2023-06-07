@@ -38,19 +38,31 @@ const TwitterFollowCardStyled = styled.article`
         color: white;
     }
     .tw-followCard-btn.is-following {
-        background-color: #09f;
+        border: 1px solid #bbb;
+        background-color: transparent;
         color: #fff;
+        width: 200px;
     }
-    .tw-followCard-btn.is-following:hover {
-        background-color: red;
-        color: #fff;
+    .tw-followCard-btn.is-following:hover  {
+        background-color: #fa565634;
+        border: 1px solid red;
+        color: red;
         transition: .3s ease background-color;
+    }
+    .tw-followCard-btn.is-following:hover .tw-followCard-stopFollow {
+        display: block;
+    }
+    .tw-followCard-btn.is-following:hover .tw-followCard-text {
+        display: none;
+    }
+    .tw-followCard-stopFollow {
+        display: none;
     }
 `
 
-function TwitterFollowCard({ userName = 'unknown', name }) {
+function TwitterFollowCard({ userName, name, initialIsFollowing }) {
 
-    const [ isFollowing, setIsFollowing ] = useState(false)
+    const [ isFollowing, setIsFollowing ] = useState(initialIsFollowing)
     const imageSrc = `https://unavatar.io/${userName}`
     const text = isFollowing ? 'Following' : 'Follow'
     const buttonClassName = isFollowing
@@ -73,7 +85,8 @@ function TwitterFollowCard({ userName = 'unknown', name }) {
                 </header>
                 <aside>
                     <button className={buttonClassName} onClick={handleOnClick}>
-                        {text}
+                        <span className='tw-followCard-text'>{text}</span> 
+                        <span className='tw-followCard-stopFollow'>Do not follow</span>
                     </button>
                 </aside>
         </TwitterFollowCardStyled>
