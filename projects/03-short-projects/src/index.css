@@ -1,0 +1,22 @@
+
+:root {
+    font-size: 16px;
+    --white: #FFE;
+    --font-button: 500 1rem/1rem Nunito;
+}
+
+body {
+    margin: 0;
+    padding: 2rem;
+    background: #334;
+    font-family: 'Nunito';
+    min-height: 100vh;
+    color: var(--white);
+}
+
+input {
+    max-inline-size: 10rem;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    border: none;
+}
