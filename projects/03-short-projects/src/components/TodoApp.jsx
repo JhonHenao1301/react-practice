@@ -9,7 +9,7 @@ const TodoAppStyled = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 4rem;
     form {
         display: flex;
         flex-direction: row;
@@ -23,9 +23,28 @@ const TodoAppStyled = styled.div`
         font: var(--font-button);
         color: white;
     }
+    .taskBoard {
+        inline-size: 26rem;
+        border: 1px solid #eee;
+        padding-inline: 2rem;
+        padding-block: 2rem .5rem;
+        border-radius: .75rem;
+        background: #001;
+        box-shadow: rgba(255, 255, 255, .5) 0px 8px 12px, rgba(253, 253, 246, .5) 0px 15px 12px;
+    }
+    .taskList {
+        max-block-size: 20rem;
+        inline-size: inherit;
+        overflow-y: auto;
+        scroll-behavior: smooth;
+    }
+    .taskLength {
+        font-weight: 700;
+        color: #fff2f2a0;
+        margin-block-start: 4rem;
+    }
 `
 
-// eslint-disable-next-line react/prop-types
 function TodoApp() {
     const [ taskList, setTaskList ] = useState([])
     const [ taskItemValue, setTaskItemValue ] = useState('')
@@ -39,7 +58,8 @@ function TodoApp() {
         if(taskItemValue.trim() !== '') {
             const newToDo = { 
                 id:     crypto.randomUUID(),
-                title:  taskItemValue
+                title:  taskItemValue,
+                completed: false
             }
             setTaskList([
                 ...taskList,
@@ -56,8 +76,7 @@ function TodoApp() {
     }
     function handleDelete(item) {
         const temp = [...taskList]
-        const itemTitle = item.title
-        const index = temp.findIndex((itemTemp) => itemTemp.id == itemTitle)
+        const index = temp.findIndex((itemTemp) => itemTemp === item)
         temp.splice(index, 1)
         setTaskList(temp)
     }
@@ -71,14 +90,17 @@ function TodoApp() {
                     Add task 
                 </button>
             </form>
-            <div className="taskList">
-                { 
-                    taskList?.map((task) => {
-                        return (
-                            <Task key={task.id} task={task} onUpdate={handleUpdate} onDelete={handleDelete} /> 
-                        )
-                    }) 
-                }
+            <div className="taskBoard">
+                <div className="taskList">
+                    { 
+                        taskList?.map((task) => {
+                            return (
+                                <Task key={task.id} task={task} onUpdate={handleUpdate} onDelete={handleDelete} /> 
+                            )
+                        })
+                    }
+                </div>
+                <p className='taskLength'>{taskList.length} tasks</p>
             </div>
         </TodoAppStyled>
     )
