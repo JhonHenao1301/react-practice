@@ -33,8 +33,9 @@ const TodoAppStyled = styled.div`
         box-shadow: rgba(255, 255, 255, .5) 0px 8px 12px, rgba(253, 253, 246, .5) 0px 15px 12px;
     }
     .taskList {
+        display: flex;
+        flex-direction: column;
         max-block-size: 20rem;
-        inline-size: inherit;
         overflow-y: auto;
         scroll-behavior: smooth;
     }

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
  
  import styled from 'styled-components'
- import { FaPenSquare, FaTrash, FaSave } from 'react-icons/fa'
  import { useState } from 'react'
  
  const TaskStyled = styled.div`
@@ -19,7 +18,7 @@
         flex: 1;
     }
     .form-control {
-        inline-size: 16rem;
+        inline-size: 100%;
         font-family: system-ui, sans-serif;
         font-size: 1rem;
         font-weight: 600;
@@ -78,22 +77,18 @@
 
     .actions {
         display: flex;
-        gap: 1rem;
+        gap: .5rem;
     }
     button {
-        border-radius: .5rem;
-        border: 1px solid white;
         padding: .5rem;
-        display: flex;
-        color: white;
+        background: transparent;
         font: var(--font-button);
         cursor: pointer;
+        color: black;
     }
-    .editButton {
-        background: #005e9c;
-    }
-    .deleteButton {
-        background: #770101;
+    ion-icon {
+        color: white;
+        font-size: 1.5rem;
     }
  `
  
@@ -121,7 +116,7 @@
                 <form className="taskEditor" onSubmit={handleSubmitUpdate}>
                     <input type='text' defaultValue={task.title} onChange={handleChange}/>
                     <button alt='Save' type='submit'>
-                        <FaSave color='#78d1f5'/>
+                        <ion-icon name="save-outline"></ion-icon>
                     </button>
                 </form>
                 : 
@@ -132,10 +127,10 @@
                     </label>
                     <div className="actions">
                         <button alt='Edit' className='editButton' onClick={() => setEditMode(!editMode)}>
-                            <FaPenSquare color='#ffe'/>
+                            <ion-icon name="create-outline"></ion-icon>
                         </button>
                         <button alt='Delete' className='deleteButton' onClick={handleClickDelete}>
-                            <FaTrash color='#ffe' />
+                            <ion-icon name="close-circle-outline"></ion-icon>
                         </button>
                     </div> 
                 </div>
