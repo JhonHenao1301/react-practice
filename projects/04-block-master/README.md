@@ -3,6 +3,6 @@
 
 - [x] Create project
 - [x] ESLINT configuration
-- [] Make project structure
+- [x] Make project structure
 - [] Make tailwind configuration
 - [] Read api documentation
