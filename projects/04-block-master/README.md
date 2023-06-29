@@ -5,4 +5,4 @@
 - [x] ESLINT configuration
 - [x] Make project structure
 - [] Make tailwind configuration
-- [] Read api documentation
+- [x] Read api documentation
