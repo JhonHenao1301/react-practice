@@ -8,11 +8,12 @@ import responseMovies from './mocks/results.json'
 
 function App() {
   const movies = responseMovies.Search
+  const lastMovies = movies.slice(movies.length - 5)
   const hasMovies = movies?.length > 0
   return (
     <>
       <Header />
-      <Slider />
+      <Slider lastMovies={lastMovies} />
       {
         hasMovies
         ? (

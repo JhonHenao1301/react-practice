@@ -1,21 +1,42 @@
 
 import styled from 'styled-components'
+import Logo from '../icons/BlockBuster-logo'
 
-const HeaderStyled = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
-    padding-block: 1.5rem;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass, faBars } from '@fortawesome/free-solid-svg-icons'
 
-    ul {
+const HeaderStyled = styled.header`
+    nav {
+        padding-block: 1rem;
         display: flex;
-        flex-direction: row;
-        gap: 3rem;
-        
-        & li {
-        list-style: none;
+        justify-content: space-between;
+        align-items: center;
+        & .actionsNavBarLg {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            @media(max-width: 780px) {
+                display: none;
+            }
+            & ul {
+                display: flex;
+                gap: 2rem;
+                
+                & li {
+                list-style: none;
+                }
+            }
+            & input {
+                border-radius: .5rem;
+                padding: .5rem;
+            }
+        }
+        & .actionsNavBarSm {
+            display: flex;
+            gap: 2rem;
+            @media(min-width: 780px) {
+                display: none;
+            }
         }
     }
 `
@@ -23,13 +44,23 @@ const HeaderStyled = styled.div`
 function Header() {
     return (
         <HeaderStyled>
-            <img src="/react.svg" alt="Block buster logo" width={20} height={20}/>
-            <ul>
-                <li>All</li>
-                <li>Least valued</li>
-                <li>Most valued</li>
-            </ul>
-            <input type="text" placeholder='Search your favorite movie'/>
+            <nav>
+                <div className="logo">
+                    <Logo width={120} height={68} />
+                </div>
+                <div className="actionsNavBarLg">
+                    <ul>
+                        <li>All</li>
+                        <li>Least valued</li>
+                        <li>Most valued</li>
+                    </ul>
+                    <input type="text" className='input' placeholder='Search your favorite movie'/>
+                </div>
+                <div className="actionsNavBarSm">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' />
+                    <FontAwesomeIcon icon={faBars} size='xl' />
+                </div>
+            </nav>
         </HeaderStyled>
     )
 }

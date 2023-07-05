@@ -22,9 +22,9 @@ const MovieListStyled = styled.div`
         position: absolute;
         left: 0;
         top: 10px;
-        padding: .5rem;
+        padding: .5rem 1rem;
         border-radius: 0 4rem 4rem 0;
-        font-size: 1.2rem;
+        font-size: 1.5rem;
         font-weight: bold;
         background: rgba(0,0,0,0.4);
     }
@@ -41,7 +41,7 @@ const MovieListStyled = styled.div`
 `
 
 function MovieList({ movies }) {
-    const currentMovie = (movieYear => movieYear >= 2012 ? 'currentMovie' : 'noCurrentMovie') 
+    const currentMovie = (movieYear => movieYear >= 2012 ? 'currentMovie' : 'noCurrentMovie')
     return (
         <MovieListStyled>
             {
