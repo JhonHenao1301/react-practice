@@ -1,11 +1,20 @@
 
+:root {
+  --bg-dark: #0F0E17;
+  --font-family: 'Nunito', sans-serif;
+}
+
 body {
-  background: #0F0E17;
+  background: var(--bg-dark);
   block-size: 100vh;
   margin: 0;
   padding: 0;
   padding-inline: 5rem;
   color: whitesmoke;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-family);
+  @media(max-width: 780px) {
+    padding-inline: 2rem;
+  }
 }
+
 

@@ -2,63 +2,84 @@
 import styled from 'styled-components'
 import Logo from '../icons/BlockBuster-logo'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faBars } from '@fortawesome/free-solid-svg-icons'
-
 const HeaderStyled = styled.header`
     nav {
         padding-block: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        & .actionsNavBarLg {
+        & .actionsNavBar {
             display: flex;
-            align-items: center;
-            gap: 2rem;
-            @media(max-width: 780px) {
-                display: none;
-            }
+            gap: .75rem;
             & ul {
                 display: flex;
-                gap: 2rem;
-                
-                & li {
-                list-style: none;
+                gap: .25rem;
+                margin: 0;
+                padding: 0;
+                & button {
+                    border: none;
+                    background: var(--bg-dark);
+                    color: white;
+                    padding: .5rem 1rem;
+                    font-family: var(--font-family);
+                    font-size: 1rem;
+                    cursor: pointer;
+                    &:hover {
+                        color: #e7e7e7;
+                        font-size: 1.125rem;
+                    }
                 }
             }
-            & input {
+            & .input {
+                inline-size: 10rem;
                 border-radius: .5rem;
-                padding: .5rem;
-            }
-        }
-        & .actionsNavBarSm {
-            display: flex;
-            gap: 2rem;
-            @media(min-width: 780px) {
-                display: none;
+                padding-inline: .5rem;
+                font-family: var(--font-family);
+                @media(min-width: 780px) {
+                    inline-size: 14rem;
+                }
             }
         }
     }
 `
 
-function Header() {
+function Header({ setSearchMovie, setTypeMovie }) {
+    const handleChange = (event) => {
+        let inputValue = event.target.value
+        if(inputValue) {
+            setSearchMovie(inputValue)
+        }
+            else {
+                setSearchMovie('Avengers')
+            }
+    }
+    const handleClick = (event) => {
+        const typeOfContent = event.target.innerHTML
+        if(typeOfContent) {
+            if(typeOfContent === 'Movies') {
+                setTypeMovie('movie')
+            }
+                else if(typeOfContent === 'Series') {
+                    setTypeMovie('series')
+                }
+                    else {
+                        setTypeMovie('')
+                    }
+        }
+    }
     return (
         <HeaderStyled>
             <nav>
                 <div className="logo">
                     <Logo width={120} height={68} />
                 </div>
-                <div className="actionsNavBarLg">
+                <div className="actionsNavBar">
                     <ul>
-                        <li>All</li>
-                        <li>Least valued</li>
-                        <li>Most valued</li>
+                        <button onClick={handleClick}>All</button>
+                        <button onClick={handleClick}>Movies</button>
+                        <button onClick={handleClick}>Series</button>
                     </ul>
-                    <input type="text" className='input' placeholder='Search your favorite movie'/>
-                </div>
-                <div className="actionsNavBarSm">
-                    <FontAwesomeIcon icon={faMagnifyingGlass} size='xl' />
-                    <FontAwesomeIcon icon={faBars} size='xl' />
+                    <input type="text" className='input' placeholder='Search your favorite movie' onChange={handleChange}/>
                 </div>
             </nav>
         </HeaderStyled>

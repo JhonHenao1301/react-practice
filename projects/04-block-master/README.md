@@ -7,5 +7,5 @@
 - [x] Read api documentation
 - [x] Finish slider
 - [] Make a responsive header
-- [] Make useEffect function
+- [x] Make useEffect function
 - [] Add search function

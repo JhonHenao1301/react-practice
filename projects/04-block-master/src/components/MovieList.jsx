@@ -40,14 +40,21 @@ const MovieListStyled = styled.div`
     }
 `
 
-function MovieList({ movies }) {
+function MovieList({ movies, setIdMovieSelected }) {
+    function handleClickMovie(id) {
+        setIdMovieSelected(id)
+    }
     const currentMovie = (movieYear => movieYear >= 2012 ? 'currentMovie' : 'noCurrentMovie')
     return (
         <MovieListStyled>
             {
                 movies?.map(movie => {
                     return (
-                        <div className="cards" key={movie.imdbID}>
+                        <div 
+                            className="cards" 
+                            key={movie.imdbID} 
+                            onClick={handleClickMovie(movie.imdbID)}
+                            >
                             <img src={movie.Poster} alt="movie poster" />
                             <span 
                                 className={`movieYear ${currentMovie(movie.Year)}`}>
