@@ -4,24 +4,19 @@
   --font-family: 'Nunito', sans-serif;
 }
 
-body{
+body {
     font-family: var(--font-family);
     background-image: url(/bg-shape4.svg);
     background-repeat: no-repeat;
     background-size: cover;
-    /* color: white; */
     margin: 0;
     padding-inline: 2rem;
-    block-size: 100vh;
+    block-size: 100%;
 }
 
 .App {
     text-align: center;
     margin: 0 8% 4%;
-}
-
-.form-search h2 {
-    font-size: 50px;
 }
 
 /* loading animation */
@@ -30,6 +25,7 @@ body{
         transform: rotate(360deg);
     }
 }
+
 .loading {
     width: 6rem;
     height: 6rem;
@@ -41,18 +37,5 @@ body{
     animation: spinner .6s linear infinite;
 }
 
-p.author {
-    display: flex;
-    justify-content: center;
-    FONT-VARIANT: JIS04;
-    margin-top: 3%;
-    gap: 7px;
-    color: #fff;
-}
-p.author a {
-    text-decoration: none;
-    font-weight: 700;
-    color: #fff;
-}
 
 

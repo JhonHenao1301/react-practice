@@ -15,7 +15,6 @@ export const useFetch = (params) => {
             .then(resJson => {
                 if (resJson.Response === "True") {
                     setData(resJson.Search || resJson);
-                    console.log("res: ", resJson);
                     setError(false);
                 } else {
                     setError(true);
