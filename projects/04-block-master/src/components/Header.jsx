@@ -30,29 +30,11 @@ const HeaderStyled = styled.header`
                     }
                 }
             }
-            & .input {
-                inline-size: 10rem;
-                border-radius: .5rem;
-                padding-inline: .5rem;
-                font-family: var(--font-family);
-                @media(min-width: 780px) {
-                    inline-size: 14rem;
-                }
-            }
         }
     }
 `
 
 function Header({ setSearchMovie, setTypeMovie }) {
-    const handleChange = (event) => {
-        let inputValue = event.target.value
-        if(inputValue) {
-            setSearchMovie(inputValue)
-        }
-            else {
-                setSearchMovie('Avengers')
-            }
-    }
     const handleClick = (event) => {
         const typeOfContent = event.target.innerHTML
         if(typeOfContent) {
@@ -79,7 +61,6 @@ function Header({ setSearchMovie, setTypeMovie }) {
                         <button onClick={handleClick}>Movies</button>
                         <button onClick={handleClick}>Series</button>
                     </ul>
-                    <input type="text" className='input' placeholder='Search your favorite movie' onChange={handleChange}/>
                 </div>
             </nav>
         </HeaderStyled>

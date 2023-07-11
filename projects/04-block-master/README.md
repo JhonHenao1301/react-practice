@@ -8,4 +8,6 @@
 - [x] Finish slider
 - [] Make a responsive header
 - [x] Make useEffect function
-- [] Add search function
+- [x] Add search function
+- [] Fetch data from a selected movie
+- [x] Span message for unavailable images
