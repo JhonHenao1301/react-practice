@@ -13,7 +13,7 @@ export const DataProvider = ({children}) => {
     return (
         // In value I define which values I'll share between components
         <DataContext.Provider value={{ setQuery, isLoading, error, data }}>
-            { children }    
+            { children }   
         </DataContext.Provider>
     )
 }

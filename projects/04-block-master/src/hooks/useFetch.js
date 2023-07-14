@@ -25,7 +25,6 @@ export const useFetch = (params) => {
 
     useEffect(() => {
         fetchMovie(`${API_ENDPOINT}${params}`);
-
     }, [params])
 
     return {isLoading, error, data}
