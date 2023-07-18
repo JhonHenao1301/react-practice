@@ -1,5 +1,8 @@
 
 import styled from 'styled-components'
+import { useContext } from 'react'
+import { DataContext } from '../context/DataContext'
+
 import Logo from '../icons/BlockBuster-logo'
 
 const HeaderStyled = styled.header`
@@ -34,22 +37,24 @@ const HeaderStyled = styled.header`
     }
 `
 
-function Header({ setSearchMovie, setTypeMovie }) {
+function Header() {
+    const { setTypeOfMovie } = useContext(DataContext)
     const handleClick = (event) => {
         const typeOfContent = event.target.innerHTML
         if(typeOfContent) {
             if(typeOfContent === 'Movies') {
-                setTypeMovie('movie')
+                setTypeOfMovie('movie')
             }
                 else if(typeOfContent === 'Series') {
-                    setTypeMovie('series')
+                    setTypeOfMovie('series')
                 }
                     else {
-                        setTypeMovie('')
+                        setTypeOfMovie('')
                     }
         }
     }
     return (
+        
         <HeaderStyled>
             <nav>
                 <div className="logo">

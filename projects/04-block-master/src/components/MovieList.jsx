@@ -14,21 +14,21 @@ const MovieListStyled = styled.div`
 `
 
 function MovieList() {
-    const { isLoading, data } = useContext(DataContext)
+    const { isLoading, data, typeOfMovies } = useContext(DataContext)
     return (
         <MovieListStyled>
             {
-               !isLoading ? 
-                    data.map(item => (
-                        <Movie 
-                            key={item.imdbID}
-                            id={item.imdbID}
-                            title={item.Title}
-                            type={item.Type}
-                            year={item.Year}
-                            poster={item.Poster}
-                        />
-                    ))
+                !isLoading
+                ? data.map(item => (
+                    <Movie 
+                        key={item.imdbID}
+                        id={item.imdbID}
+                        title={item.Title}
+                        type={item.Type}
+                        year={item.Year}
+                        poster={item.Poster}
+                    />
+                ))
                 : ""
             }
         </MovieListStyled>
