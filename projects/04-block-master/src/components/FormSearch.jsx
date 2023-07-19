@@ -5,7 +5,6 @@ import { DataContext } from "../context/DataContext"
 import styled from 'styled-components'
 
 const FormSearchStyled = styled.div`
-    margin-block-start: 2rem;
     margin-block-end: 8rem;
     display: flex;
     flex-direction: column;
