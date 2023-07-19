@@ -14,7 +14,7 @@ const MovieListStyled = styled.div`
 `
 
 function MovieList() {
-    const { isLoading, data, typeOfMovies } = useContext(DataContext)
+    const { isLoading, data } = useContext(DataContext)
     return (
         <MovieListStyled>
             {
