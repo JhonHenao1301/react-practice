@@ -1,12 +1,13 @@
 
+import { useState } from 'react'
 import styled from 'styled-components'
 
 const BookStyled = styled.div`
     
     .book {
-        /* border: 1px solid red; */
-        width: 360px;
-        height: 580px;
+        position: relative;
+        width: 320px;
+        height: 460px;
         background-size: cover;
         border-radius: 15px;
         display: flex;
@@ -16,9 +17,9 @@ const BookStyled = styled.div`
             background-color: black;
         }
         & .info {
-            background-color: #ffffffd9;
+            background-color: #ffffffab;
             width: 100%;
-            padding: 10px 30px;
+            padding: 1rem 1.8rem;
             color: black;
             height: 6rem;
             display: flex;
@@ -30,7 +31,7 @@ const BookStyled = styled.div`
                 margin: 0;
                 & span {
                     text-decoration: none;
-                    font-size: .8rem;
+                    font-size: 1rem;
                 }
             }
             & h4 {
@@ -43,10 +44,23 @@ const BookStyled = styled.div`
             }
         }
     }
+    .btnAdd {
+        right: 1rem;
+        bottom: 2rem;
+        border: 1px solid red;
+        position: absolute;
+        border-radius: 50%;
+        block-size: 2rem;
+        inline-size: 2rem;
+    }
 `
 
 // eslint-disable-next-line react/prop-types
-function Book({ title, pages, genre, image, year, author }) {
+function Book({ title, genre, image, author }) {
+    const [ status, setStatus ] = useState(false)
+    const handleClick = () => {
+        setStatus(!status)
+    }
     return (
         <BookStyled>
             <article>
@@ -54,14 +68,13 @@ function Book({ title, pages, genre, image, year, author }) {
                     <div className="info">
                         <h4>{ title }</h4>
                         <p className="row-info">
-                            <span><strong>Pages:</strong> { pages }</span>
                             <span><strong>Genre:</strong> { genre }</span>
                         </p>
                         <p className="row-info">
-                            <span><strong>Year:</strong> { year }</span>
                             <span><strong>Author:</strong> { author }</span>
                         </p>
                     </div>
+                    <button className='btnAdd' onClick={handleClick}></button>
                 </div>
             </article>
         </BookStyled>
