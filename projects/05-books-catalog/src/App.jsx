@@ -1,11 +1,12 @@
 
-import BookList from "./components/BookList"
+import Layout from "./components/Layout"
+import Board from "./components/Board"
 
 function App() {
   return (
-    <>
-      <BookList />
-    </>
+    <Layout>
+      <Board />
+    </Layout>
   )
 }
 

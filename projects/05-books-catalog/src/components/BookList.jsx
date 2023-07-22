@@ -26,7 +26,6 @@ const BookListStyled = styled.div`
 `
 
 function BookList() {
-    const selectedBooksList = []
     return (
         <BookListStyled>
             <h1>Books catalog</h1>
@@ -41,21 +40,6 @@ function BookList() {
                             author={item.book.author.name}
                         />
                     ))
-                }
-            </div>
-            <div className="selectedBooks">
-                {
-                    selectedBooksList 
-                    ? selectedBooksList?.map((item, index) => (
-                        <Book 
-                            key={index}
-                            title={item.book.title}
-                            genre={item.book.genre}
-                            image={item.book.cover}
-                            author={item.book.author.name}
-                        />   
-                    ))
-                    : <h2>Chosen book list is empty</h2>
                 }
             </div>
         </BookListStyled>
