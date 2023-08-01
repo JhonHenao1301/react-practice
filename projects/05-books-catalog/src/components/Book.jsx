@@ -1,5 +1,7 @@
 
-// import { useState } from 'react'
+// import { useContext } from 'react'
+// import { readingListContext } from '../context/readingList'
+
 import styled from 'styled-components'
 
 const BookStyled = styled.div`
@@ -29,21 +31,40 @@ const BookStyled = styled.div`
             transition: .7s;
             cursor: pointer;
         }
+        & button {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            /* box-shadow: 26px 15px 75px -19px rgba(255,255,255,0.44); */
+            border-radius: 50%;
+            inline-size: 2rem;
+            block-size: 2rem;
+            background: #fbfd6b;
+            font-weight: bold;
+            color: white;
+            font-size: 1rem;
+            border: none;
+        }
     }
+    
 `
 
 // eslint-disable-next-line react/prop-types
 function Book({ image }) {
-    // const [ status, setStatus ] = useState(false)
-    // const handleClick = () => {
-    //     setStatus(!status)
-    //     console.log(status)
-    // }
+    // const { addToReadingList } = useContext(readingListContext)
+    const handleClick = () => {
+        console.log(event)
+    }
     return (
         <BookStyled>
             <article>
-                <div className="book" style={{ backgroundImage: `url(${image})`}}>
+                <div
+                    className="book"
+                    style={{ backgroundImage: `url(${image})`}}
+                >
+                    <button onClick={handleClick}></button>
                 </div>
+            
             </article>
         </BookStyled>
     )

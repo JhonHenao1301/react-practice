@@ -1,22 +1,16 @@
 
-// import { useState } from 'react'
-import { library, readingList } from '../mocks/books.json'
-
-import styled from 'styled-components'
 import BookList from './BookList'
 import SelectedBooks from './SelectedBooks'
 
+import styled from 'styled-components'
+
 const BoardStyled = styled.div`
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 4fr 2fr;
     gap: 1rem;
 `
 
 function Board() {
-    // const [ listOfLists, setListOfLists ] = useState({ 
-    //     library,
-    //     readingList
-    // })
     return (
         <BoardStyled>
             <BookList />

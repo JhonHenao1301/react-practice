@@ -5,6 +5,7 @@ import Book from './Book'
 import styled from 'styled-components'
 
 const BookListStyled = styled.div`
+    padding-inline: 2rem;
     h1 {
         font-size: 4rem;
         margin-block: 4rem;
@@ -31,9 +32,9 @@ function BookList() {
             <h1>Books catalog</h1>
             <div className="bookList">
                 {
-                    library?.map((item, index) => (
+                    library?.map((item) => (
                         <Book 
-                            key={index}
+                            key={item.book.ISBN}
                             title={item.book.title}
                             genre={item.book.genre}
                             image={item.book.cover}

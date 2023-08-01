@@ -7,12 +7,43 @@ books that user can check out.
 
 - [] Filtering Books by Genre: Users should be able to filter the list of available books by genre, and a counter will be displayed with the number of books available, the number of books on the reading list, and the number of books available in the selected genre.
 
-- [] Sincronización de Estado: Debe haber una sincronización del estado global que refleje el número de libros en la lista de lectura y el número de libros todavía disponibles. Si un libro se mueve de la lista de disponibles a la lista de lectura, el recuento de ambos debe actualizarse en consecuencia.
+- [] State Synchronization: There should be a global state perturbation that reflects the number of books on the reading list and the number of books still available. If a book is moved from the available list to the reading list, the count for both should be updated accordingly.
 
-Persistencia de Datos: La aplicación debe persistir los datos de la lista de lectura en el almacenamiento local del navegador. Al recargar la página, la lista de lectura debe mantenerse.
+- [] Data Persistence: The application must persist reading list data in the browser's local storage. When reloading the page, the reading list should be maintained.
 
-Sincronización entre pestañas: Si el usuario abre la aplicación en dos pestañas diferentes, los cambios realizados en una pestaña deben reflejarse en la otra. Sin necesidad de usar Backend.
+- [] Synchronization between tabs: If the user opens the application in two different tabs, changes made in one tab should be reflected in the other. No need to use Backend.
 
-Despliegue: La aplicación debe estar desplegada en algún servicio de hosting gratuito (Netlify, Vercel, Firebase, etc) y debe ser accesible a través de una URL pública. Indica la URL en el README.
+- [] Deployment: The application must be deployed on a free hosting service (Netlify, Vercel, Firebase, etc) and must be accessible through a public URL. Indicate the URL in the README.
 
-Test: La aplicación debe tener AL MENOS un test. Haz el test que consideres más importante para tu aplicación.
+- [] Test: The application must have AT LEAST one test. Do the test that you consider most important for your application.
+
+
+//Create context
+// eslint-disable-next-line react-refresh/only-export-components
+export const readingListContext = createContext()
+
+//Create provider
+// eslint-disable-next-line react/prop-types
+export function ReadingListProvider({ children }) {
+    const [ readingList, setReadingList ] = useState([])
+
+    const addToReadingList = () => {
+        console.log('sum')
+        // const newReadingList = structuredClone(readingList)
+        return setReadingList([])
+    }
+    const clearReadingList = () => {
+        setReadingList([])
+    }
+    return (
+        <ReadingListProvider value={{ 
+            readingList,
+            addToReadingList,
+            clearReadingList
+        }}>
+            { children }
+        </ReadingListProvider>
+    )
+} 
+
+
