@@ -1,7 +1,4 @@
 
-// import { useContext } from 'react'
-// import { readingListContext } from '../context/readingList'
-
 import styled from 'styled-components'
 
 const BookStyled = styled.div`
@@ -14,23 +11,6 @@ const BookStyled = styled.div`
         border-radius: 15px;
         display: flex;
         align-items: flex-end;
-        &:hover > .info {
-            color: #fff;
-            background-color: black;
-        }
-        & .info {
-            background-color: #ffffffab;
-            width: 100%;
-            padding: 1rem;
-            color: black;
-            height: 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            border-radius: 0px 0px 15px 15px;
-            transition: .7s;
-            cursor: pointer;
-        }
         & button {
             position: absolute;
             bottom: 1rem;
@@ -51,9 +31,7 @@ const BookStyled = styled.div`
 
 // eslint-disable-next-line react/prop-types
 function Book({ image }) {
-    // const { addToReadingList } = useContext(readingListContext)
     const handleClick = () => {
-        console.log(event)
     }
     return (
         <BookStyled>

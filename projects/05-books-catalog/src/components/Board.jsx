@@ -1,20 +1,29 @@
 
-import BookList from './BookList'
-import SelectedBooks from './SelectedBooks'
+// import { library } from '../mocks/books.json'
+// import { useFilters } from '../hooks/useFilters'
+
+// import Header from './Header'
+// import BookList from './BookList'
+// import Footer from './Footer'
 
 import styled from 'styled-components'
 
 const BoardStyled = styled.div`
-    display: grid;
-    grid-template-columns: 4fr 2fr;
-    gap: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding-block: 2rem;
 `
 
 function Board() {
+    // const { filterBooks } = useFilters()
+
+    // const filteredBooks = filterBooks(library)
     return (
         <BoardStyled>
-            <BookList />
-            <SelectedBooks />
+            {/* <Header />
+            <BookList library={filteredBooks}/>
+            <Footer /> */}
         </BoardStyled>
     )
 }

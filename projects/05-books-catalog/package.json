@@ -27,8 +27,5 @@
   },
   "eslintConfig": {
     "extends": "./node_modules/standard/eslintrc.json"
-  },
-  "eslint-disable-next-line": {
-    "react/prop-types": "off"
   }
 }
