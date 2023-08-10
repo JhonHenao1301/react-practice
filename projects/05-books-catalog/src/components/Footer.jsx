@@ -1,7 +1,8 @@
 
 import { useContext } from 'react'
 import styled from 'styled-components'
-import { FilterContext } from '../context/filterContext'
+// import { FilterContext } from '../context/filterContext'
+import { CartContext } from '../context/cartContext'
 
 const FooterStyled = styled.div`
     position: fixed;
@@ -27,17 +28,32 @@ const FooterStyled = styled.div`
 `
 
 function Footer() {
-    const { filters } = useContext(FilterContext)
+    // const { filters } = useContext(FilterContext)
+    const { cart } = useContext(CartContext)
+    const cartLength = cart.length
     return (
         <FooterStyled>
-            <h4>React technical test - <span>@jhenao</span></h4>
+            {/* <h4>React technical test - <span>@jhenao</span></h4>
             <h5>
                 Books catalog made by useContext and useState - 
                 <span>{filters.genre}</span> 
             </h5>
             <h5>
                 <span>{filters.pages}</span> 
-            </h5>
+            </h5> */}
+            {
+                cart.map(item => {
+                    console.log(cart)
+                    return (
+                        <div key={item.book.ISBN}>
+                            <h2>{cartLength}</h2>
+                            <p>
+                                {item.book.title}
+                            </p>
+                        </div>
+                    )
+                })
+            }
         </FooterStyled>
     )
 }
