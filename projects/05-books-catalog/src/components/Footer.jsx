@@ -30,7 +30,7 @@ const FooterStyled = styled.div`
 function Footer() {
     // const { filters } = useContext(FilterContext)
     const { cart } = useContext(CartContext)
-    const cartLength = cart.length
+    // const cartLength = cart.length
     return (
         <FooterStyled>
             {/* <h4>React technical test - <span>@jhenao</span></h4>
@@ -42,17 +42,18 @@ function Footer() {
                 <span>{filters.pages}</span> 
             </h5> */}
             {
-                cart.map(item => {
-                    console.log(cart)
-                    return (
-                        <div key={item.book.ISBN}>
-                            <h2>{cartLength}</h2>
-                            <p>
-                                {item.book.title}
-                            </p>
-                        </div>
-                    )
-                })
+                // cart.map(item => {
+                //     console.log(cart)
+                //     return (
+                //         <div key={item.book.ISBN}>
+                //             <h2>{cartLength}</h2>
+                //             <p>
+                //                 {item.book.title}
+                //             </p>
+                //         </div>
+                //     )
+                // })
+                JSON.stringify(cart)
             }
         </FooterStyled>
     )
