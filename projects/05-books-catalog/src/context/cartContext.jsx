@@ -13,9 +13,10 @@ export function CartProvider ({ children }) {
   const addToCart = product => {
     //Check if product is on cart
     const bookInCartIndex = cart.findIndex(
-      item => item.book.key === product.key
+      item => item.book.ISBN === product.book.ISBN
     )
-    
+
+    //Product is on cart, so modify just quantity
     if(bookInCartIndex >= 0) {
       const newCart = structuredClone(cart)
       newCart[bookInCartIndex].quantity += 1
@@ -34,7 +35,7 @@ export function CartProvider ({ children }) {
 
   const removeFromCart = product => {
     const bookInCartIndex = cart.findIndex(
-      item => item.book.key === product.key
+      item => item.book.ISBN === product.key
     )
 
     if(bookInCartIndex >= 0) {

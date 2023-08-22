@@ -64,7 +64,6 @@ function BookList({ library }) {
                 <div className="bookList">
                     {
                         library?.map(item => {
-                            const isProductInCart = checkProductInCart(item)
 
                             return (
                             <li key={item.book.ISBN}>
@@ -76,9 +75,11 @@ function BookList({ library }) {
                                     <p><strong>{item.book.title}</strong></p>
                                     <p>{item.book.genre}</p>
                                     <button
-                                        style={{ backgroundColor: isProductInCart ? 'red' : '#09f' }}
+                                        style={{ backgroundColor:           checkProductInCart(item.book) 
+                                            ? '#ff7474' 
+                                            : '#09f' }}
                                         onClick={() => {
-                                            isProductInCart
+                                            checkProductInCart(item.book)
                                             ? removeFromCart(item)
                                             : addToCart(item)
                                         }}
