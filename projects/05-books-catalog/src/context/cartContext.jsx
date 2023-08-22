@@ -1,6 +1,5 @@
 
 import { createContext, useState } from 'react'
-// import { cartReducer, cartInitialState } from '../reducers/cart.js'
 
 // 1. Create context
 export const CartContext = createContext()
@@ -35,22 +34,21 @@ export function CartProvider ({ children }) {
 
   const removeFromCart = product => {
     const bookInCartIndex = cart.findIndex(
-      item => item.book.ISBN === product.key
+      item => item.book.ISBN === product.book.ISBN
     )
 
     if(bookInCartIndex >= 0) {
       const newCart = structuredClone(cart)
       if(newCart[bookInCartIndex].quantity === 1) {
-        const newCartWithoutItem = structuredClone(cart.filter(item => item.id !== product.id))
+        const newCartWithoutItem = structuredClone(cart.filter(item => item.book.ISBN !== product.book.ISBN))
         return setCart(newCartWithoutItem)
       }
       newCart[bookInCartIndex].quantity -= 1
       return setCart(newCart)
     }
 
-    const newCart = structuredClone(cart.filter(item => item.id !== product.id))
-
-    setCart(newCart)
+    // const newCart = structuredClone(cart.filter(item => item.id !== product.id))
+    // setCart(newCart)
   }
 
   const clearCart = () => { setCart([]) }
@@ -67,23 +65,3 @@ export function CartProvider ({ children }) {
     </CartContext.Provider>
   )
 }
-
-
-
-// function useCartReducer () {
-//     const [state, dispatch] = useReducer(cartReducer, cartInitialState)
-
-//     const addToCart = product => dispatch({
-//         type: 'ADD_TO_CART',
-//         payload: product
-//     })
-
-//     const removeFromCart = product => dispatch({
-//         type: 'REMOVE_FROM_CART',
-//         payload: product
-//     })
-
-//     const clearCart = () => dispatch({ type: 'CLEAR_CART' })
-
-//     return { state, addToCart, removeFromCart, clearCart }
-// }
