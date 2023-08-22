@@ -33,7 +33,7 @@ function Footer() {
     // const cartLength = cart.length
     return (
         <FooterStyled>
-            {/* <h4>React technical test - <span>@jhenao</span></h4>
+            {/* <h4>React technical test - <span>@</span></h4>
             <h5>
                 Books catalog made by useContext and useState - 
                 <span>{filters.genre}</span> 
