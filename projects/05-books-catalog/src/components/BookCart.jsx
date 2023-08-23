@@ -6,8 +6,7 @@ import '../components/Cart.css'
 import { CartContext } from '../context/cartContext.jsx'
 
 
-export function BookCart({ thumbnail, title, quantity }) {
-  const { addToCart, removeFromCart } = useContext(CartContext)
+export function BookCart({ thumbnail, title, quantity, addToCart, removeFromCart }) {
     return (
         <>
             <li>
@@ -33,7 +32,7 @@ export function BookCart({ thumbnail, title, quantity }) {
 
 export function Cart () {
     const cartCheckboxId = useId()
-    const { cart, clearCart } = useContext(CartContext)
+    const { cart, clearCart, addToCart, removeFromCart } = useContext(CartContext)
     return (
       <>
         <label className='cart-button' htmlFor={cartCheckboxId}>
@@ -50,6 +49,8 @@ export function Cart () {
                   thumbnail={item.book.cover}
                   title={item.book.title}
                   quantity={item.quantity}
+                  addToCart={() => addToCart(item)}
+                  removeFromCart={() => removeFromCart(item)}
                 />
               ))
             }

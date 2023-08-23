@@ -76,7 +76,7 @@ function BookList({ library }) {
                                     <p>{item.book.genre}</p>
                                     <button
                                         style={{ backgroundColor:           checkProductInCart(item.book) 
-                                            ? '#ff7474' 
+                                            ? '#fc4b4b' 
                                             : '#09f' }}
                                         onClick={() => {
                                             checkProductInCart(item.book)
