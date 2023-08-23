@@ -2,26 +2,51 @@
 .cart {
     background: #000;
     display: none;
-    padding: 2rem;
+    padding-inline: 2rem;
+    padding-block: 1rem;
     position: fixed;
-
-    & img {
-        width: 6rem;
-        height: 8rem;
-        border-radius: .5rem;
-    }
 
     & ul {
         display: flex;
-        gap: 1.5rem;
+        gap: 2.5rem;
         list-style: none;
         text-align: center;
         margin: 0;
         padding: 0;
+        padding-block-end: 1rem;
+        overflow-x: auto;
+
     }
+    ::-webkit-scrollbar {
+        height: .5rem;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-thumb {
+        background: #f1f1f1;
+        border-radius: .5rem;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-track {
+        background: #888;
+        border-radius: .5rem;
+    }
+
+    & img {
+        /* width: 6rem;
+        height: 8rem; */
+        width: 6rem;
+        height: 8rem;
+        
+        view-timeline-name: --image;
+        view-timeline-axis: inline;
     
-    & li {
-        padding-bottom: 16px;
+        animation-timeline: --image;
+        animation-name: show;
+    
+        animation-range: entry 25% cover 30%;
+        animation-fill-mode: both;
     }
 
     & .clearCartButton {
@@ -32,15 +57,28 @@
     
     & footer {
         display: flex;
-        gap: 8px;
+        gap: .5rem;
         justify-content: center;
         align-items: center;
     }
     
     & footer button {
+        margin-block: 1rem;
         border: none;
-        border-radius: .5rem;
-        padding: 8px;
+        border-radius: .2rem;
+        padding: .5rem;
+    }
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 25%;
+    }
+
+    to {
+        opacity: 1;
+        scale: 110%
     }
 }
 
@@ -70,7 +108,7 @@
     flex-direction: row;
     gap: 1rem;
     bottom: 0;
-    block-size: 12rem;
+    block-size: auto;
     width: 100%;
-    /* scroll-behavior: auto; */
 }
+

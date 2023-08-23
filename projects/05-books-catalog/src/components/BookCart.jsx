@@ -14,9 +14,6 @@ export function BookCart({ thumbnail, title, quantity, addToCart, removeFromCart
                     src={thumbnail}
                     alt={title}
                 />
-                <div>
-                    <strong>{title}</strong>
-                </div>
 
                 <footer>
                     <button onClick={removeFromCart}>-</button>
@@ -47,7 +44,6 @@ export function Cart () {
                 <BookCart
                   key={item.book.ISBN}
                   thumbnail={item.book.cover}
-                  title={item.book.title}
                   quantity={item.quantity}
                   addToCart={() => addToCart(item)}
                   removeFromCart={() => removeFromCart(item)}
