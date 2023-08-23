@@ -9,7 +9,7 @@ const BookListStyled = styled.div`
     padding-inline: 2rem;
     .bookList {
         display: flex;
-        gap: 2rem;
+        gap: 1rem;
         flex-wrap: wrap;
         justify-content: center;
         & li {
@@ -19,14 +19,14 @@ const BookListStyled = styled.div`
             justify-content: space-between;
             align-items: center;
             gap: 1.5rem;
-            inline-size: 14rem;
+            inline-size: 12rem;
             background: #242424;
             padding-block: 2rem;
             padding-inline: .5rem;
             border-radius: 1rem;
             & img {
-                border-radius: 1rem;
-                inline-size: 12rem;
+                border-radius: .5rem;
+                inline-size: 11rem;
                 block-size: 16rem;
                 object-fit: cover;
             }

@@ -5,7 +5,7 @@ import { useFilters } from './hooks/useFilters'
 
 import Header from './components/Header'
 import BookList from './components/BookList'
-import Footer from './components/Footer'
+// import Footer from './components/Footer'
 import { Cart } from './components/BookCart'
 import { CartProvider } from './context/cartContext'
 
@@ -19,7 +19,7 @@ function App() {
         <Header />
         <Cart />
         <BookList library={filteredBooks}/>
-        <Footer />
+        {/* <Footer /> */}
       </CartProvider>
     )
 }
