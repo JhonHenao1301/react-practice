@@ -54,17 +54,16 @@ const BookListStyled = styled.div`
 
 function BookList({ library }) {
     const { cart, addToCart, removeFromCart } = useContext(CartContext)
+
     const checkProductInCart = product => {
         return cart.some(item => item.book.ISBN === product.ISBN)
     }
-
     return (
         <BookListStyled>
             <main>
                 <div className="bookList">
                     {
                         library?.map(item => {
-
                             return (
                             <li key={item.book.ISBN}>
                                 <img
@@ -76,14 +75,14 @@ function BookList({ library }) {
                                     <p>{item.book.genre}</p>
                                     <button
                                         style={{ backgroundColor:           checkProductInCart(item.book) 
-                                            ? '#fc4b4b' 
-                                            : '#09f' }}
+                                            ? '#fc7070' 
+                                            : '#9bffb4' }}
                                         onClick={() => {
                                             checkProductInCart(item.book)
                                             ? removeFromCart(item)
                                             : addToCart(item)
                                         }}
-                                        >
+                                    >
                                         {
                                             checkProductInCart(item.book)
                                             ? <RemoveFromCartIcon />

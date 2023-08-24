@@ -30,9 +30,17 @@ export function BookCart({ thumbnail, title, quantity, addToCart, removeFromCart
 export function Cart () {
     const cartCheckboxId = useId()
     const { cart, clearCart, addToCart, removeFromCart } = useContext(CartContext)
+    const cartLength = cart.reduce((acc, curr) => {
+      return acc + curr.quantity
+    }, 0)
     return (
       <>
         <label className='cart-button' htmlFor={cartCheckboxId}>
+          {
+            cartLength > 0
+            ? <span>{cartLength}</span>
+            : ''
+          }
           <CartIcon />
         </label>
         <input id={cartCheckboxId} type='checkbox' hidden/>

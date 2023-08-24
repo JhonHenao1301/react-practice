@@ -7,7 +7,7 @@ books that user can check out.
 
 - [] Filtering Books by Genre: Users should be able to filter the list of available books by genre, and a counter will be displayed with the number of books available, the number of books on the reading list, and the number of books available in the selected genre.
 
-- [] State Synchronization: There should be a global state perturbation that reflects the number of books on the reading list and the number of books still available. If a book is moved from the available list to the reading list, the count for both should be updated accordingly.
+- [x] State Synchronization: There should be a global state perturbation that reflects the number of books on the reading list and the number of books still available. If a book is moved from the available list to the reading list, the count for both should be updated accordingly.
 
 - [] Data Persistence: The application must persist reading list data in the browser's local storage. When reloading the page, the reading list should be maintained.
 
