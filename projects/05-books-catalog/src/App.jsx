@@ -19,7 +19,7 @@ function App() {
         <Header />
         <Cart />
         <BookList library={filteredBooks}/>
-        <Footer library={library}/>
+        <Footer library={filteredBooks} />
       </CartProvider>
     )
 }

@@ -16,6 +16,13 @@ const FiltersStyled = styled.div`
         display: flex;
         gap: 1rem;
     }
+    & select {
+        border: none;
+        border-radius: .5rem;
+        padding: .2rem;
+        box-shadow: 0 0 0 rgba(0, 0, 0, .16);
+        cursor: pointer;
+    }
 `
 
 function Filters() {

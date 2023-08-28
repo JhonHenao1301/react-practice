@@ -28,11 +28,12 @@ function Footer({ library }) {
     const availableBooks = library.length - cart.length
     return (
         <FooterStyled>
-            {
-                <label>
-                    { availableBooks }
-                    <BookIcon />
-                </label>
+            {   <>
+                    <label>
+                        { availableBooks }
+                        <BookIcon />
+                    </label>
+                </>
             }
         </FooterStyled>
     )

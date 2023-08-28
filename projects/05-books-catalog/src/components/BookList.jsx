@@ -21,8 +21,7 @@ const BookListStyled = styled.div`
             gap: 1.5rem;
             inline-size: 12rem;
             background: #242424;
-            padding-block: 2rem;
-            padding-inline: .5rem;
+            padding: 1.5rem;
             border-radius: 1rem;
             & img {
                 border-radius: .5rem;
@@ -42,6 +41,7 @@ const BookListStyled = styled.div`
             align-items: center;
             gap: .5rem;
             & > p {
+                font-size: 1rem;
                 text-align: center;
                 margin: 0;
             }
