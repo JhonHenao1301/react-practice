@@ -6,7 +6,6 @@ export const CartContext = createContext()
 
 // 2. Create provider
 export function CartProvider ({ children }) {
-  // const { state, addToCart, removeFromCart, clearCart } = useCartReducer()
   const [ cart, setCart ] = useState([])
 
   const addToCart = product => {
@@ -46,9 +45,6 @@ export function CartProvider ({ children }) {
       newCart[bookInCartIndex].quantity -= 1
       return setCart(newCart)
     }
-
-    // const newCart = structuredClone(cart.filter(item => item.id !== product.id))
-    // setCart(newCart)
   }
 
   const clearCart = () => { setCart([]) }

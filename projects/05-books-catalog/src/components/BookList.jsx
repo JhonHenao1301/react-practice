@@ -9,7 +9,7 @@ const BookListStyled = styled.div`
     padding-inline: 2rem;
     .bookList {
         display: flex;
-        gap: 1rem;
+        gap: 1.2rem;
         flex-wrap: wrap;
         justify-content: center;
         & li {
@@ -18,10 +18,10 @@ const BookListStyled = styled.div`
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            gap: 1.5rem;
+            gap: 1rem;
             inline-size: 12rem;
-            background: #242424;
-            padding: 1.5rem;
+            background: #C5CAE9;
+            padding: 1.2rem;
             border-radius: 1rem;
             & img {
                 border-radius: .5rem;
@@ -41,9 +41,10 @@ const BookListStyled = styled.div`
             align-items: center;
             gap: .5rem;
             & > p {
-                font-size: 1rem;
+                font-size: .9rem;
                 text-align: center;
                 margin: 0;
+                color: #212121;
             }
             & > button {
                 width: 12rem;
@@ -76,7 +77,7 @@ function BookList({ library }) {
                                     <button
                                         style={{ backgroundColor:           checkProductInCart(item.book) 
                                             ? '#fc7070' 
-                                            : '#9bffb4' }}
+                                            : '#94f8ad' }}
                                         onClick={() => {
                                             checkProductInCart(item.book)
                                             ? removeFromCart(item)

@@ -1,7 +1,7 @@
 :root {
   line-height: 1.5;
   font-weight: 400;
-  background-color: #00257494;
+  background-color: #303F9F;
 }
 
 body {
@@ -11,5 +11,5 @@ body {
   min-height: 100vh;
   color: white;
   justify-content: center;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-family: 'Nunito', sans-serif;
 }
