@@ -3,7 +3,7 @@
  import styled from 'styled-components'
  import { useState } from 'react'
  
- const TaskStyled = styled.div`
+ const TodoTaskStyled = styled.div`
     padding-block: .25rem;
     .taskEditor {
         display: flex;
@@ -93,7 +93,7 @@
  `
  
  // eslint-disable-next-line react/prop-types
- function Task({ task, onUpdate, onDelete }) {
+ function TodoTask({ task, onUpdate, onDelete }) {
     const [ editMode, setEditMode ] = useState(false)
     const [ inputValue, setInputValue] = useState(task)
 
@@ -109,7 +109,7 @@
         onDelete(task)
     }
     return (
-        <TaskStyled>
+        <TodoTaskStyled>
             {
                 editMode
                 ? 
@@ -135,9 +135,9 @@
                     </div> 
                 </div>
             }
-        </TaskStyled>
+        </TodoTaskStyled>
     )
  }
  
- export default Task
+ export default TodoTask
  

@@ -5,8 +5,7 @@ function App() {
 
     return (
         <section className='App'>
-            <TodoApp>
-            </TodoApp>
+            <TodoApp />
         </section>
     )
 }
