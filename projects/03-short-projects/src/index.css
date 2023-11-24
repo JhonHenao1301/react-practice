@@ -2,36 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    font-size: 16px;
-    --white: #FFE;
-    --font-button: 500 1rem/1rem Nunito;
-    --form-control-color: rgb(134, 22, 245);
-    --form-control-disabled: #959495;
-}
 
 body {
-    margin: 0;
-    padding: 2rem;
-    background: linear-gradient(45deg, #a00202, rgb(8, 1, 1));
-    font-family: 'Nunito' ;
-    min-height: 100vh;
-    color: var(--white);
+  font-family: 'Nunito';
+  background: linear-gradient(45deg, rgb(0, 0, 134), rgb(59, 59, 0));
+  font-size: 1.4rem;
 }
 
-input {
-    max-inline-size: 10rem;
-    border-radius: .5rem;
-    padding: .5rem 1rem;
-    border: none;
-    color: black;
-}
 
 /* width */
 ::-webkit-scrollbar {
     width: .5rem;
   }
-  
+
   /* Track */
   ::-webkit-scrollbar-track {
     background: #f1f1f1; 

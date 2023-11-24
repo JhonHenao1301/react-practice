@@ -2,28 +2,9 @@
 import TodoHeader from './TodoHeader'
 import TodoForm from './TodoForm'
 import TodoTask from './TodoTask'
+import { AddIcon } from '../assets/Icons/Icons'
 import { useState } from 'react'
 
-// const TodoAppStyled = styled.div`
-//     margin-block-start: 4rem;
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-//     justify-content: center;
-//     gap: 4rem;
-//     form {
-//         display: flex;
-//         flex-direction: row;
-//         gap: 1rem;
-//     }
-//     .submitButton {
-//         background: #01584a;
-//         border: 1px solid black;
-//         border-radius: .5rem;
-//         padding: 0.5rem 1rem;
-//         font: var(--font-button);
-//         color: white;
-//     }
 //     .taskBoard {
 //         inline-size: 26rem;
 //         border: 1px solid #eee;
@@ -82,36 +63,47 @@ function TodoApp() {
         temp.splice(index, 1)
         setTaskList(temp)
     }
+    
     return (
-        <div className='flex items-center gap-6'>
+        <div className="flex flex-col gap-8 mt-12">
             <TodoHeader>
-                <h1 className=''>TODO Machine</h1>
+                <h1 className="text-4xl font-semibold text-center">
+                    TODO Machine
+                </h1>
             </TodoHeader>
+
             <TodoForm>
-                <form onSubmit={handleSubmit}>
-                    <input 
+                <form 
+                    onSubmit={handleSubmit}
+                    className="flex flex-row gap-4 justify-center">
+                    <input
                         onChange={handleInputChange} 
-                        className='todoInput' 
+                        className='rounded-md text-black-20 p-2' 
                         value={taskItemValue}/>
                     <button
                         type='submit' 
                         className='submitButton'> 
-                        Add task 
+                        <AddIcon />
                     </button>
                 </form>
             </TodoForm>
 
             <div className="taskBoard">
-                <div className="taskList">
+                <div className="flex flex-col gap-4">
                     { 
                         taskList?.map((task) => {
                             return (
-                                <TodoTask key={task.id} task={task} onUpdate={handleUpdate} onDelete={handleDelete} /> 
+                                <TodoTask 
+                                    key={task.id} 
+                                    task={task} 
+                                    onUpdate={handleUpdate} 
+                                    onDelete={handleDelete} 
+                                /> 
                             )
                         })
                     }
                 </div>
-                <p className='taskLength'>{taskList.length} tasks</p>
+                <p className='mt-8'>{taskList.length} tasks</p>
             </div>
         </div>
     )
