@@ -7,6 +7,12 @@ body {
   font-family: 'Nunito';
   background: linear-gradient(45deg, rgb(0, 0, 134), rgb(59, 59, 0));
   font-size: 1.4rem;
+  margin: 0;
+  height: 100vh;
+}
+
+.task-list {
+  background: linear-gradient(180deg, rgb(1, 1, 199), rgb(122, 122, 122));
 }
 
 
