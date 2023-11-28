@@ -1,8 +1,9 @@
 
  import { useState } from 'react'
- import { EditIcon, DeleteIcon, CheckIcon } from '../assets/Icons/Icons.jsx'
+ import { EditIcon, DeleteIcon, CheckIcon, SaveIcon } from '../assets/Icons/Icons.jsx'
  
- export default function TodoTask({ task, onUpdate, onDelete }) {
+ export default function TodoTask(props) {
+    const { task, onUpdate, onDelete, onDone } = props
     const [ editMode, setEditMode ] = useState(false)
     const [ inputValue, setInputValue] = useState(task)
     const [ checked, setChecked ] = useState(false)
@@ -20,21 +21,22 @@
     }
     function handleCheck() {
         setChecked(!checked)
+        onDone(task.id)
     }
     return (
         <div>
             {
                 editMode
                 ? 
-                <form className="" onSubmit={handleSubmitUpdate}>
+                <form className="flex gap-4" onSubmit={handleSubmitUpdate}>
                     <input 
                         type='text'
-                        className='p-2 text-gray-10'
+                        className='p-2 text-gray-20'
                         defaultValue={task.title} 
                         onChange={handleChange}
                     />
                     <button alt='Save' type='submit'>
-                        <ion-icon name="save-outline"></ion-icon>
+                        <SaveIcon />
                     </button>
                 </form>
                 :
@@ -67,7 +69,6 @@
                             alt='Delete' 
                             className={`disabled:text-gray-5`} 
                             onClick={handleClickDelete}
-                            disabled={checked}
                         >
                             <DeleteIcon />
                         </button>
