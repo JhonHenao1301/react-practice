@@ -1,125 +1,48 @@
 
 import TodoHeader from './TodoHeader'
-import TodoSearch from './TodoSearch'
+// import TodoSearch from './TodoSearch'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
 import TodoTask from './TodoTask'
 import Modal from './Modal'
-import { AddIcon } from '../assets/Icons/Icons'
-import { useReducer } from 'react'
-
-const initialState = {
-    openModal: false,
-    value: '',
-    TodoList: [],
-    deleted: false,
-}
-
-const actionTypes = {
-    OPEN_MODAL: 'OPEN_MODAL',
-    CHANGE_INPUT: 'CHANGE_INPUT',
-    ADD: 'ADD',
-    DELETE: 'DELETE',
-}
-
-const reducer = (state, action) => {
-    switch(action.type) {
-        case actionTypes.OPEN_MODAL : 
-            return {
-                ...state,
-                openModal: true
-            }
-        case actionTypes.CHANGE_INPUT : 
-            return {
-                ...state,
-                value: action.value
-            }
-        case actionTypes.ADD : 
-            return {
-                ...state,
-                openModal: false,
-                newTodo: action.newTodo,
-                value: ''
-            }
-        case actionTypes.DELETE :
-            return {
-                ...state,
-                deleted: true
-            }
-        default: 
-            return {
-                ...state,
-            }
-    }
-}
+import { initialState, todoReducer } from '../useHooks/useTodoFinal'
+import { AddIcon, CancelIcon } from '../assets/Icons/Icons'
+import { useReducer, useState } from 'react'
 
 function TodoApp() {
-    // const [ taskList, setTaskList ] = useState([])
-    // const [ taskItemValue, setTaskItemValue ] = useState('')
-    // const [ openModal, setOpenModal ] = useState(false)
-    // const [ taskListFiltered, setTaskListFiltered ] = useState()
 
-    // function handleInputChange(event) {
-    //     const value = event.target.value
-    //     setTaskItemValue(value)
-    // }
-    // function handleUpdate(key, taskValue) {
-    //     const temp = [...taskList]
-    //     const item = temp.find(item => item.id === key)
-    //     item.title = taskValue
-    //     setTaskList(temp)     
-    // }
-    // function handleDelete(item) {
-    //     const temp = [...taskList]
-    //     const index = temp.findIndex((itemTemp) => itemTemp === item)
-    //     temp.splice(index, 1)
-    //     setTaskList(temp)
-    // }
-    // function handleDone(key) {
-    //     const temp = [...taskList]
-    //     const item = temp.find(item => item.id === key)
-    //     item.completed = true
-    //     setTaskList(temp)
-    // }
-    // const completedTasks = taskList.filter(task => !!task.completed).length;
-
-    // const { filteredTasks, searchText, setSearchText } = useTodos(taskList)
-
-    const [ state, dispatch ] = useReducer(reducer, initialState) 
-
-    const handleClickModal = () => {
-        dispatch({ type: 'OPEN_MODAL'})
-    }
-
-    const handleInputChange = (e) => {
-        dispatch({
-            type: 'CHANGE_INPUT',
-            value: e.target.value
-        })
-    }
+    const [ state, dispatch ] = useReducer(todoReducer, initialState)
+    const [ openModal, setOpenModal ] = useState(false)
+    const [ inputActive, setInputActive ] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault()
         const newTodo = {
             id: crypto.randomUUID(),
-            title: state.value,
+            title: inputActive,
             completed: false
         }
-        const newTaskList = [] 
-        newTaskList.push(newTodo)
         dispatch({
             type: 'ADD',
-            newTodo: newTaskList 
+            payload: newTodo
+        })
+        setInputActive('')
+        setOpenModal(!openModal)
+    }
+
+    const handleDelete = (id) => {
+        dispatch({
+            type: 'DELETE',
+            payload: id
         })
     }
 
-        // if(taskItemValue.trim() !== '') {
-        // setTaskList([
-        //     ...taskList,
-        //     newToDo
-        // ])
-        // setTaskItemValue('')
-        // setOpenModal(!openModal)
+    const handleDone = (id) => {
+        dispatch({
+            type: 'DONE',
+            payload: id
+        })
+    }
 
     return (
         <div>
@@ -129,23 +52,18 @@ function TodoApp() {
                     <h1 className="text-4xl font-semibold text-center">
                         TODO Machine
                     </h1>
-                    <TodoSearch
-                        // searchText={searchText}
-                        // setSearchText={setSearchText}
-                    />
-                    {/* <p className='text-center'>{completedTasks} tasks of {taskList.length} tasks</p> */}
                 </TodoHeader>
-{/*                 
+                                
                 <TodoList>
-                    <div className="rounded-md p-8 min-w-full max-w-screen-sm">
+                    <div className="p-4">
                         <div className="flex flex-col gap-6">
                             {
-                                filteredTasks?.map((task) => {
+                                state?.map((task) => {
                                     return (
                                         <TodoTask 
                                             key={task.id} 
                                             task={task} 
-                                            onUpdate={handleUpdate} 
+                                            // onUpdate={handleUpdate} 
                                             onDelete={handleDelete}
                                             onDone={handleDone}
                                         /> 
@@ -154,15 +72,21 @@ function TodoApp() {
                             }
                         </div>
                     </div>
-                </TodoList> */}
+                </TodoList>    
                 <button
                     className="fixed bottom-8 right-8" 
-                    onClick={handleClickModal}>
+                    onClick={() => setOpenModal(!openModal)}>
                         <AddIcon />
                 </button> 
             </div>
-            {   state.openModal && (
+            {   openModal && (
                     <Modal>
+                        <button 
+                            className="right-0 relative"
+                            onClick={() => setOpenModal(!openModal)}
+                        >
+                            <CancelIcon />  
+                        </button>
                         <TodoForm>
                             <h2 className="text-md font-semibold">
                                 Add the new task
@@ -171,7 +95,7 @@ function TodoApp() {
                                 onSubmit={handleSubmit}
                                 className="flex flex-row gap-4 justify-center">
                                 <input
-                                    onChange={handleInputChange}
+                                    onChange={(e) => setInputActive(e.target.value)}
                                     className='input'
                                 />
                                 <button
