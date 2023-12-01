@@ -1,84 +1,39 @@
 
-import { useLocalStorage } from "./useLocalStorage";
-import { useState } from "react";
+export const initialState = []
 
+const actionTypes = {
+    ADD: 'ADD',
+    DELETE: 'DELETE',
+    DONE: 'DONE',
+    UPDATE: 'UPDATE'
+}
 
-export default function useTodo() {
-    
-    const {
-        item: todos,
-        saveItem: saveTodos,
-        sincronizeItem: sincronizedTodos,
-        loading,
-        error,
-    } =useLocalStorage('TODOS_V1', []);
-    const [searchValue, setSearchValue] = useState('');
-    const [openModal, setOpenModal] = useState('');
+export const todoReducer = (state, action) => {
+    switch(action.type) {
+        case actionTypes.ADD :
+            return [
+                ...state,
+                action.payload
+            ]
+        case actionTypes.DELETE :
+            const { id } = action.payload
+            return state.filter(item => item.id !== id)
 
-    const addTodo = (text) => {
-    const newTodos = Array.isArray(todos) ? [...todos]: [];
-    newTodos.push({
-        text,
-        completed:false,
-    });
-    saveTodos(newTodos);
+        case actionTypes.DONE :
+            const idTask = action.payload
+            const index = state.findIndex(item => item.id === idTask)
+            state[index].completed = true
+            return state
+
+        case actionTypes.UPDATE :
+            const { idTask2, newValue }  = action.payload
+            const index2 = state.findIndex(item => item.id === idTask2)
+            state[index2].title = newValue
+            return state
+
+        default: 
+            return {
+                ...state,
+            }
     }
-
-    const todosArray = Array.isArray(todos) ? todos : [];
-
-    const completedTodos =  todosArray.filter(todo => !!todo.completed).length;
-
-    const totalTodos = todosArray.length;
-
-
-    let searchedTodos = [];
-
-    if (!searchValue.length >= 1) {
-    searchedTodos = todos;
-    } else {
-    searchedTodos = todosArray.filter(todo => {
-        const todoText = todo.text.toLowerCase();
-        const searchText = searchValue.toLowerCase();
-        return todoText.includes(searchText);
-    });
-    }
-
-
-    const completedTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-    (todo) => todo.text === text 
-    );
-    newTodos[todoIndex].completed = newTodos[todoIndex].completed ? false : true;
-    saveTodos(newTodos);
-    };
-    const deleteTodo = (text) => {
-    const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(
-    (todo) => todo.text === text 
-    );
-    newTodos.splice(todoIndex, 1);
-    saveTodos(newTodos);
-    };
-
-    const states = {
-    loading,
-    error,
-    completedTodos,
-    totalTodos,
-    searchValue,
-    searchedTodos,
-    openModal,
-    };
-
-    const statesUpdaters = {
-    addTodo,
-    completedTodo,
-    deleteTodo,
-    setOpenModal,
-    sincronizedTodos, 
-    setSearchValue,      
-    }
-
-    return {states, statesUpdaters}
 }

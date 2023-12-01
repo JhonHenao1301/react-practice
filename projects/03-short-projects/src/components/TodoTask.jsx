@@ -23,15 +23,58 @@
         setChecked(!checked)
         onDone(task.id)
     }
+
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         try {
+    //             const localStorageItem = localStorage.getItem(itemName);
+      
+    //             let parsedItem;  
+    
+    //             if (!localStorageItem) {
+    //                 localStorage.setItem(itemName, JSON.stringify(initialValue));
+    //                 parsedItem = initialValue;
+    //             }   else {
+    //                     parsedItem = JSON.parse(localStorageItem);
+    //                 }
+    //             onSuccess(parsedItem);
+    //         } catch (error) {
+    //             onError(error);
+    //         }
+    //     }, 2000);
+    //   }, [state]);
+    // const saveItem = (newItem) => {
+    //     try {
+    //       localStorage.setItem(itemName, JSON.stringify(newItem));
+    //       onSave(newItem);
+    //     } catch(error) {
+    //       onError(error);
+    //     }
+        
+    //   };
+
+    // let searchedTodos = [];
+
+    // if (!searchValue.length >= 1) {
+    // searchedTodos = todos;
+    // } else {
+    // searchedTodos = todosArray.filter(todo => {
+    //     const todoText = todo.text.toLowerCase();
+    //     const searchText = searchValue.toLowerCase();
+    //     return todoText.includes(searchText);
+    // });
+    // }
+
+
     return (
         <div>
             {
                 editMode
                 ? 
                 <form className="flex gap-4" onSubmit={handleSubmitUpdate}>
-                    <input 
+                    <input
                         type='text'
-                        className='p-2 text-gray-20'
+                        className='rounded-md py-2 px-4 text-gray-20'
                         defaultValue={task.title} 
                         onChange={handleChange}
                     />
@@ -40,7 +83,7 @@
                     </button>
                 </form>
                 :
-                <div className='flex gap-12 max-w-md'>
+                <div className='flex gap-24'>
                     <label 
                         className={`flex gap-4 flex-1 ${checked ? 'line-through decoration-white-10' : ''}` }>
                         {

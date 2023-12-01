@@ -3,9 +3,10 @@ import TodoHeader from './TodoHeader'
 // import TodoSearch from './TodoSearch'
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
+import TodoListEmpty from './TodoListEmpty'
 import TodoTask from './TodoTask'
 import Modal from './Modal'
-import { initialState, todoReducer } from '../useHooks/useTodoFinal'
+import { initialState, todoReducer } from '../useHooks/useTodo'
 import { AddIcon, CancelIcon } from '../assets/Icons/Icons'
 import { useReducer, useState } from 'react'
 
@@ -44,6 +45,28 @@ function TodoApp() {
         })
     }
 
+    const handleUpdate = (idTask2, newValue) => {
+        dispatch({
+            type: 'UPDATE',
+            payload: {
+                idTask2,
+                newValue
+            }
+        })
+    }
+    
+    function counter(list) {
+        let count = 0
+        list.map(itemList => {
+            itemList.completed === true ? count++ : count
+        })
+        return count
+    }
+
+    function stateLength(list) {
+        return list.length
+    }
+
     return (
         <div>
             <div
@@ -52,23 +75,29 @@ function TodoApp() {
                     <h1 className="text-4xl font-semibold text-center">
                         TODO Machine
                     </h1>
+                    <h3 className="font-medium">
+                        {counter(state)} completed of {stateLength(state)}
+                    </h3>
                 </TodoHeader>
                                 
                 <TodoList>
                     <div className="p-4">
                         <div className="flex flex-col gap-6">
                             {
-                                state?.map((task) => {
-                                    return (
-                                        <TodoTask 
-                                            key={task.id} 
-                                            task={task} 
-                                            // onUpdate={handleUpdate} 
-                                            onDelete={handleDelete}
-                                            onDone={handleDone}
-                                        /> 
-                                    )
-                                })
+                                !state.length > 0 
+                                    ?  <TodoListEmpty />
+                                    :
+                                    state?.map((task) => {
+                                        return (
+                                            <TodoTask 
+                                                key={task.id} 
+                                                task={task} 
+                                                onDelete={handleDelete}
+                                                onDone={handleDone}
+                                                onUpdate={handleUpdate} 
+                                            />
+                                        )
+                                    })
                             }
                         </div>
                     </div>
