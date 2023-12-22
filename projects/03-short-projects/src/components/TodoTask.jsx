@@ -1,26 +1,20 @@
 
  import { useState } from 'react'
  import { EditIcon, DeleteIcon, CheckIcon, SaveIcon } from '../assets/Icons/Icons.jsx'
+import { useNavigate } from 'react-router-dom'
  
  export default function TodoTask(props) {
     const { task, onUpdate, onDelete, onDone } = props
-    const [ editMode, setEditMode ] = useState(false)
-    const [ inputValue, setInputValue] = useState(task)
-    const [ checked, setChecked ] = useState(false)
+    // const [ editMode, setEditMode ] = useState(false)
 
-    function handleChange(e) {
-        setInputValue(e.target.value)
-    }
-    function handleSubmitUpdate(e) {
-        e.preventDefault()
-        onUpdate(task.id, inputValue)
-        setEditMode(!editMode)
-    }
+    const [ checked, setChecked ] = useState(false)
+    const navigate = useNavigate()
+
     function handleClickDelete() {
         onDelete(task)
     }
     function handleCheck() {
-        // setChecked(!checked)
+        setChecked(!checked)
         onDone(task.id)
     }
 
@@ -44,20 +38,9 @@
     return (
         <div>
             {
-                editMode
-                ? 
-                <form className="flex gap-4" onSubmit={handleSubmitUpdate}>
-                    <input
-                        type='text'
-                        className='rounded-md py-2 px-4 text-gray-20'
-                        defaultValue={task.title} 
-                        onChange={handleChange}
-                    />
-                    <button alt='Save' type='submit'>
-                        <SaveIcon />
-                    </button>
-                </form>
-                :
+                // editMode
+                // ? 
+                // :
                 <div className='flex gap-24'>
                     <label 
                         className={`flex items-center gap-4 flex-1 ${done}` }>
@@ -77,7 +60,7 @@
                         <button 
                             alt='Edit' 
                             className={`disabled:text-gray-5`}
-                            onClick={() => setEditMode(!editMode)}
+                            onClick={() => navigate("/edit/8")}
                             disabled={checked}
                         >
                             <EditIcon />

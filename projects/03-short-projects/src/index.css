@@ -15,6 +15,9 @@ body {
   @apply rounded-md text-gray-20 px-2 py-1
 }
 
+.text-button {
+  @apply rounded-lg bg-gray-30 py-2 px-4
+}
 
 /* width */
 ::-webkit-scrollbar {
