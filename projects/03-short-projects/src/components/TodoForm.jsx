@@ -1,26 +1,21 @@
 
-import { useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 export default function TodoForm (props) {
 
     const navigate = useNavigate()
-    // const [ inputValue, setInputValue] = useState(state[id].title)
-    // const [ inputValue, setInputValue] = useState()
+    const { onUpdate, handleSubmit } = props
+    const [ inputValue, setInputValue] = useState(props.defaultTodoText || '')
 
-    const handleSubmit = (e) => {
+    function onChange(e) {
+        setInputValue(e.target.value)
+    }
+
+    const onSubmit = (e) => {
         e.preventDefault()
-        const newTodo = {
-            id: crypto.randomUUID(),
-            title: inputActive,
-            completed: false
-        }
-        dispatch({
-            type: 'ADD',
-            payload: newTodo
-        })
-        setInputActive('')
-        setOpenModal(!openModal)
+        handleSubmit(inputValue)
+        navigate('/')
     }
 
     return ( 
@@ -29,11 +24,12 @@ export default function TodoForm (props) {
                 {props.label}
             </p>
             <form 
-                onSubmit={handleSubmit}
+                onSubmit={onSubmit}
                 className="flex flex-col gap-6 justify-center items-center">
                 <input
+                    defaultValue={inputValue}
                     className="input h-10"
-                    onChange={(e) => setInputActive(e.target.value)}
+                    onChange={onChange}
                 />
                 <div className="flex flex-row items-center gap-4">
                     <button

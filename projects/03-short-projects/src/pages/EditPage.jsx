@@ -1,55 +1,29 @@
 
-import { useState, useReducer } from "react"
-import { todoReducer, initialState } from "../useHooks/useTodo"
-import { SaveIcon } from '../assets/Icons/Icons'
-import { useNavigate, useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import TodoForm from "../components/TodoForm"
+import { UseTodo } from "../useHooks/UseTodo"
 
 export default function EditPage () {
     
-    const [ state, dispatch ] = useReducer(todoReducer, initialState)
-    const navigate = useNavigate()
-    const id = useParams()
-    // console.log(state)
-
-    const handleUpdate = (idTask2, newValue) => {
-        dispatch({
-            type: 'UPDATE',
-            payload: {
-                idTask2,
-                newValue
-            }
-        })
-    }
-
-    function handleChange(e) {
-        setInputValue(e.target.value)
-    }
-
-    function handleSubmitUpdate(e) {
-        e.preventDefault()
-        handleUpdate(task.id, inputValue)
-        navigate("/")
-    }
-
-    // console.log(state)
+    const location = useLocation()
+    const { id } = useParams()
+    const { getTodo, updateTodo } = UseTodo()
+    let todoText
     
+    if(location.state?.task) {
+        const titleTask = location.state.task.title
+        todoText = titleTask
+    }
+    else {
+            const todoElement = getTodo(id)
+            todoText = todoElement
+        }
+
     return ( 
-        // <div>
-        //     <form className="flex gap-4" onSubmit={handleSubmitUpdate}>
-        //         <input
-        //             type='text'
-        //             className='rounded-md py-2 px-4 text-gray-20'
-        //             defaultValue={state[id]?.title} 
-        //             onChange={handleChange}
-        //         />
-        //         <button alt='Save' type='submit'>
-        //             <SaveIcon />
-        //         </button>
-        //     </form>
-        // </div>
         <TodoForm 
             label="Edit the task"
+            defaultTodoText={todoText}
+            onUpdate={(newText) => updateTodo(id, newText)}
         />
     )
 }

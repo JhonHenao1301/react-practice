@@ -1,14 +1,12 @@
 
  import { useState } from 'react'
- import { EditIcon, DeleteIcon, CheckIcon, SaveIcon } from '../assets/Icons/Icons.jsx'
-import { useNavigate } from 'react-router-dom'
+ import { EditIcon, DeleteIcon, CheckIcon } from '../assets/Icons/Icons.jsx'
  
  export default function TodoTask(props) {
     const { task, onUpdate, onDelete, onDone } = props
     // const [ editMode, setEditMode ] = useState(false)
 
     const [ checked, setChecked ] = useState(false)
-    const navigate = useNavigate()
 
     function handleClickDelete() {
         onDelete(task)
@@ -22,25 +20,9 @@ import { useNavigate } from 'react-router-dom'
         return task.completed === true ? 'line-through decoration-white-10' : ''
     }
 
-
-    // let searchedTodos = [];
-
-    // if (!searchValue.length >= 1) {
-    // searchedTodos = todos;
-    // } else {
-    // searchedTodos = todosArray.filter(todo => {
-    //     const todoText = todo.text.toLowerCase();
-    //     const searchText = searchValue.toLowerCase();
-    //     return todoText.includes(searchText);
-    // });
-    // }
-
     return (
         <div>
             {
-                // editMode
-                // ? 
-                // :
                 <div className='flex gap-24'>
                     <label 
                         className={`flex items-center gap-4 flex-1 ${done}` }>
@@ -60,7 +42,7 @@ import { useNavigate } from 'react-router-dom'
                         <button 
                             alt='Edit' 
                             className={`disabled:text-gray-5`}
-                            onClick={() => navigate("/edit/8")}
+                            onClick={onUpdate}
                             disabled={checked}
                         >
                             <EditIcon />

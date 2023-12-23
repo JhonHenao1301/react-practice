@@ -1,24 +1,18 @@
 
 import TodoHeader from '../components/TodoHeader'
-import TodoForm from '../components/TodoForm'
 import TodoList from '../components/TodoList'
 import TodoListEmpty from '../components/TodoListEmpty'
 import TodoTask from '../components/TodoTask'
-import Modal from '../components/Modal'
-import { initialState, todoReducer } from '../useHooks/useTodo'
-import { AddIcon, CancelIcon } from '../assets/Icons/Icons'
-import { useReducer, useState } from 'react'
+import { initialState, todoReducer } from '../useHooks/useReducer'
+import { useReducer } from 'react'
+import { AddIcon } from '../assets/Icons/Icons'
 import { useNavigate } from 'react-router-dom'
 
 function TodoApp() {
 
     const [ state, dispatch ] = useReducer(todoReducer, initialState)
-    const [ inputActive, setInputActive ] = useState('')
     const navigate = useNavigate()
 
-    const handleEdit = (id) => {
-        // navigate(`/edit/${id}`)
-    }
     const handleDelete = (id) => {
         dispatch({
             type: 'DELETE',
@@ -70,9 +64,15 @@ function TodoApp() {
                                             <TodoTask 
                                                 key={task.id} 
                                                 task={task}
-                                                onEdit={handleEdit(task.id)} 
+                                                onUpdate={() => {
+                                                    navigate(
+                                                        "/edit/" + task.id,
+                                                    {
+                                                       state: { task }
+                                                    })
+                                                }}
                                                 onDelete={handleDelete}
-                                                onDone={handleDone} 
+                                                onDone={handleDone}
                                             />
                                         )
                                     })
